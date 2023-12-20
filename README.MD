@@ -26,7 +26,7 @@ Make sure each device has a diffent mqtt id<br />
 <br />
 mqttSetup("log",{"testtopic1,"testtopic2"})
     
-    --run on setup to connect and start mqtt <br />
+    --run on setup to connect and start mqtt
     --the fist attribute is for the mqtt log topic
         --when connected a status message will be posted here
     --the second attribute is a array for topics to subscribe
