@@ -1,5 +1,5 @@
-#include "mqtt.h"  //inclde this for mqtt
-#include "ota.h"        //include this for ota
+#include "mqtt.h"  //include this for mqtt  \n
+#include "ota.h"        //include this for ota \n
 
 -------------------------------
 ota.h
