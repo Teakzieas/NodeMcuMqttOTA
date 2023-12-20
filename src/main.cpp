@@ -1,16 +1,19 @@
 #include <Arduino.h>
 #include "mqttSetup.h"
+#include "ota.h"
 
 void setup() 
 {
   Serial.begin(115200);
-  setupMQTT({"test1", "test2"});
+  setupMQTT("NodemcuLog",{"test30", "test2"});
+  otaSetup();
 }
 
 void loop() 
 {
-  reconnectMqtt();
-  client.loop();
+  otaLoop();
+  mqttloop();
+  
 }
 
 void MsgReceived(String topic, String payload)

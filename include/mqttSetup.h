@@ -20,11 +20,15 @@ std::vector<String> mqtt_topics;
 /**** WiFi and MQTT Connectivity Initialisation *****/
 WiFiClient espClient;
 PubSubClient client(espClient);
-void MsgReceived(String topic, String payload);
 
+bool FirstRun = false;
+char* mqtt_log = "";
+
+void MsgReceived(String topic, String payload);
 void reconnectMqtt();
-void setupMQTT(std::vector<String> topics);
+void setupMQTT(char* mqtt_log_channel,std::vector<String> topics);
 void callback(char* topic, byte* payload, unsigned int length);
+void mqttloop();
 
 void reconnectMqtt() 
 {
@@ -58,8 +62,9 @@ void reconnectMqtt()
     digitalWrite(ledPin, LOW);
   }
 }
-void setupMQTT(std::vector<String> topics)
+void setupMQTT(char* mqtt_log_channel,std::vector<String> topics)
 {
+  mqtt_log = mqtt_log_channel;
   pinMode(ledPin, OUTPUT);
   digitalWrite(ledPin, HIGH);
   mqtt_topics = topics;
@@ -78,4 +83,15 @@ void callback(char* topic, byte* payload, unsigned int length)
   // Handle MQTT messages
   payload[length] = '\0'; // Null-terminate the payload
   MsgReceived(topic, (char*)payload);
+}
+void mqttloop()
+{
+  
+  reconnectMqtt();
+  client.loop();
+  if(!FirstRun)
+  {
+    client.publish(mqtt_log, (String(mqtt_id)+String(" connected")).c_str());
+    FirstRun = true;
+  }
 }
