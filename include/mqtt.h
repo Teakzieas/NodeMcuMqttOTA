@@ -26,7 +26,7 @@ char* mqtt_log = "";
 
 void MsgReceived(String topic, String payload);
 void reconnectMqtt();
-void setupMQTT(char* mqtt_log_channel,std::vector<String> topics);
+void mqttSetup(char* mqtt_log_channel,std::vector<String> topics);
 void callback(char* topic, byte* payload, unsigned int length);
 void mqttloop();
 
@@ -62,7 +62,7 @@ void reconnectMqtt()
     digitalWrite(ledPin, LOW);
   }
 }
-void setupMQTT(char* mqtt_log_channel,std::vector<String> topics)
+void mqttSetup(char* mqtt_log_channel,std::vector<String> topics)
 {
   mqtt_log = mqtt_log_channel;
   pinMode(ledPin, OUTPUT);

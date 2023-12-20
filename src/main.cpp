@@ -1,11 +1,11 @@
 #include <Arduino.h>
-#include "mqttSetup.h"
+#include "mqtt.h"
 #include "ota.h"
 
 void setup() 
 {
   Serial.begin(115200);
-  setupMQTT("NodemcuLog",{"test30", "test2"});
+  mqttSetup("NodemcuLog",{"test30", "test2"});
   otaSetup();
 }
 
