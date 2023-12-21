@@ -22,7 +22,7 @@ WiFiClient espClient;
 PubSubClient client(espClient);
 
 bool FirstRun = false;
-char* mqtt_log = "";
+const char* mqtt_log = "";
 
 void MsgReceived(String topic, String payload);
 void reconnectMqtt();
