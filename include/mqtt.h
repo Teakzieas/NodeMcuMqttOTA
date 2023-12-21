@@ -22,7 +22,7 @@ WiFiClient espClient;
 PubSubClient client(espClient);
 
 bool FirstRun = false;
-const char* mqtt_log = "";
+String mqtt_log = "";
 
 void MsgReceived(String topic, String payload);
 void reconnectMqtt();
@@ -93,7 +93,7 @@ void mqttLoop()
   client.loop();
   if(!FirstRun)
   {
-    client.publish(mqtt_log, (String(mqtt_id)+String(" connected to '")+String(ssid)+String("' IP: ")+String(WiFi.localIP().toString().c_str())).c_str());
+    client.publish(mqtt_log.c_str(), (String(mqtt_id)+String(" connected to '")+String(ssid)+String("' IP: ")+String(WiFi.localIP().toString().c_str())).c_str());
     FirstRun = true;
   }
 }
