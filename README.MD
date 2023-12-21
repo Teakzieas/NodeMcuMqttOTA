@@ -31,7 +31,7 @@ mqttSetup("log",{"testtopic1,"testtopic2"})
         --when connected a status message will be posted here
     --the second attribute is a array for topics to subscribe
 
-mqttloop()
+mqttLoop()
 
     --keeps the mqtt connection active
 
