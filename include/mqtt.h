@@ -28,7 +28,9 @@ void MsgReceived(String topic, String payload);
 void reconnectMqtt();
 void mqttSetup(char* mqtt_log_channel,std::vector<String> topics);
 void callback(char* topic, byte* payload, unsigned int length);
-void mqttloop();
+void mqttLoop();
+void mqttPublish(String topic, String payload);
+
 
 void reconnectMqtt() 
 {
@@ -84,14 +86,18 @@ void callback(char* topic, byte* payload, unsigned int length)
   payload[length] = '\0'; // Null-terminate the payload
   MsgReceived(topic, (char*)payload);
 }
-void mqttloop()
+void mqttLoop()
 {
   
   reconnectMqtt();
   client.loop();
   if(!FirstRun)
   {
-    client.publish(mqtt_log, (String(mqtt_id)+String(" connected")).c_str());
+    client.publish(mqtt_log, (String(mqtt_id)+String(" connected to '")+String(ssid)+String("' IP: ")+String(WiFi.localIP().toString().c_str())).c_str());
     FirstRun = true;
   }
+}
+void mqttPublish(String topic, String payload)
+{
+  client.publish(topic.c_str(), payload.c_str());
 }

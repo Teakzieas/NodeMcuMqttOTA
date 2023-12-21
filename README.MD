@@ -10,7 +10,7 @@ otaSetup()
     
     --Add in setup to connect and start ota
 
-otaloop() 
+otaLoop() 
     
     --Add in loop to keep connection
 
@@ -38,3 +38,7 @@ mqttloop()
 void MsgReceived(String topic, String payload)
 
     --this function is to recieve any mqtt messages that arrive
+
+mqttPublish("topic", "payload");
+
+    --call this function to publish a payload to a topic
