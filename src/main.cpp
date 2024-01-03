@@ -5,7 +5,7 @@
 void setup() 
 {
   Serial.begin(115200);
-  mqttSetup("NodemcuLog",{"test30", "test2"});
+  mqttSetup("NodemcuLog",{"test30", "tewqest2"});
   otaSetup();
 }
 
